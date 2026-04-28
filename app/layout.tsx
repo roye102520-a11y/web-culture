@@ -1,21 +1,10 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Search } from "lucide-react";
-import { Geist, Geist_Mono } from "next/font/google";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import "./globals.css";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
 
 const navItems = [
   { href: "/", label: "首页" },
@@ -36,10 +25,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="zh-CN"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
-    >
+    <html lang="zh-CN" className="h-full antialiased">
       <body className="min-h-full bg-background text-foreground">
         <div className="flex min-h-screen flex-col">
           <header className="sticky top-0 z-40 border-b border-border/80 bg-background/95 backdrop-blur">
