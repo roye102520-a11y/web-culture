@@ -16,6 +16,9 @@ interface DeepSeekRouteResponse {
   result: DeepSeekResponse;
 }
 
+/** Vercel Serverless：允许上游 DeepSeek 较慢时仍完成请求（Hobby 套餐上限 10s，Pro 可更高） */
+export const maxDuration = 60;
+
 export const POST = withAIErrorHandling(async (request: Request) => {
   const body = (await request.json()) as Partial<DeepSeekRouteRequest>;
   const query = body.query?.trim() ?? "";
