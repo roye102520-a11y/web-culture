@@ -1,6 +1,6 @@
 # 文脉 WenMai（web-culture）
 
-历史文化学习平台 Demo，基于 [Next.js](https://nextjs.org) App Router + TypeScript + Tailwind CSS + shadcn/ui。
+culture share · 历史文化学习平台 Demo，基于 [Next.js](https://nextjs.org) App Router + TypeScript + Tailwind CSS + shadcn/ui。
 
 远程仓库：[https://github.com/roye102520-a11y/web-culture](https://github.com/roye102520-a11y/web-culture)
 
