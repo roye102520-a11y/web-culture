@@ -39,3 +39,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Local demo videos exceed GitHub 100MB limit; copy your own .mov files after clone
+public/videos/*.mov

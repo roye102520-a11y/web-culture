@@ -1,0 +1,243 @@
+export const BILI_BASE = "https://www.bilibili.com";
+
+export const biliVideo = (bvid: string) => `${BILI_BASE}/video/${bvid}/`;
+export const biliEp = (epid: string | number) => `${BILI_BASE}/bangumi/play/ep${epid}`;
+export const biliEmbed = (bvid: string) =>
+  `https://player.bilibili.com/player.html?bvid=${bvid}&page=1&autoplay=0&danmaku=0`;
+
+export const VERIFIED_VIDEOS = {
+  yizhongtian_sanguo: {
+    bvid: "BV1Fr421M7Eg",
+    title: "易中天品三国·全56讲·百家讲坛",
+    desc: "还原真实曹操，替周瑜辩诬，正说诸葛亮，重评司马懿。厦门大学易中天教授主讲。",
+    url: biliVideo("BV1Fr421M7Eg"),
+    embedUrl: biliEmbed("BV1Fr421M7Eg"),
+    tags: ["三国", "百家讲坛", "易中天"],
+    theme: "palace" as const,
+    type: "视频" as const,
+  },
+  daqin_jueqi: {
+    bvid: "BV12E4m1R7fh",
+    title: "大秦崛起·百家讲坛全集",
+    desc: "秦国从西陲附庸到横扫六合的完整崛起历程，商鞅变法与军功爵制的深层逻辑。",
+    url: biliVideo("BV12E4m1R7fh"),
+    embedUrl: biliEmbed("BV12E4m1R7fh"),
+    tags: ["秦朝", "百家讲坛", "商鞅"],
+    theme: "greatwall" as const,
+    type: "视频" as const,
+  },
+  zhuzibajia: {
+    bvid: "BV1hM4m11739",
+    title: "诸子百家·百家讲坛",
+    desc: "春秋战国百家争鸣，儒道法墨思想碰撞，奠定中华文明两千年精神底色。",
+    url: biliVideo("BV1hM4m11739"),
+    embedUrl: biliEmbed("BV1hM4m11739"),
+    tags: ["先秦", "哲学", "诸子百家"],
+    theme: "scroll" as const,
+    type: "视频" as const,
+  },
+  zhanguo_qixiong: {
+    bvid: "BV1tM4m1y7zi",
+    title: "战国七雄·百家讲坛",
+    desc: "赵武灵王、苏秦合纵连横、白起长平之战……战国时代的每一场博弈深刻影响历史走向。",
+    url: biliVideo("BV1tM4m1y7zi"),
+    embedUrl: biliEmbed("BV1tM4m1y7zi"),
+    tags: ["战国", "七雄", "合纵连横"],
+    theme: "mountain" as const,
+    type: "视频" as const,
+  },
+  chunqiu_wuba: {
+    bvid: "BV1SS411c7ms",
+    title: "春秋五霸·百家讲坛",
+    desc: "齐桓公、晋文公为何打着“尊周”旗号行扩张之实？春秋国际关系与诸侯博弈深度解析。",
+    url: biliVideo("BV1SS411c7ms"),
+    embedUrl: biliEmbed("BV1SS411c7ms"),
+    tags: ["春秋", "五霸", "管仲"],
+    theme: "bronze" as const,
+    type: "视频" as const,
+  },
+  wangliqun_qinshihuang: {
+    bvid: "BV1nS421R749",
+    title: "王立群讲秦始皇·百家讲坛",
+    desc: "郡县制、统一度量衡、书同文——秦始皇推行的制度改革如何塑造此后两千年中国政治格局。",
+    url: biliVideo("BV1nS421R749"),
+    embedUrl: biliEmbed("BV1nS421R749"),
+    tags: ["秦始皇", "秦朝", "制度史"],
+    theme: "palace" as const,
+    type: "视频" as const,
+  },
+  wangliqun_hanwudi: {
+    bvid: "BV1DS411A7Xi",
+    title: "王立群讲汉武帝·百家讲坛",
+    desc: "中国人民大学王立群教授解析汉武帝文治武功，揭示开疆拓土与民间疾苦之间的历史辩证关系。",
+    url: biliVideo("BV1DS411A7Xi"),
+    embedUrl: biliEmbed("BV1DS411A7Xi"),
+    tags: ["汉武帝", "汉朝", "帝王史"],
+    theme: "greatwall" as const,
+    type: "视频" as const,
+  },
+  shuihu_shendu: {
+    bvid: "BV17SoVB1Ee3",
+    title: "水浒传深度解读·猫不懂088（全集）",
+    desc: "过度不过分，解读不解构。逐回精析水浒传的权力逻辑、底层叙事与宋代社会生态。",
+    url: biliVideo("BV17SoVB1Ee3"),
+    embedUrl: biliEmbed("BV17SoVB1Ee3"),
+    tags: ["水浒传", "名著解读", "北宋"],
+    theme: "landscape" as const,
+    type: "视频" as const,
+    views: 93920,
+  },
+  zizhi_tongjian: {
+    bvid: "BV1pCChBiEjT",
+    title: "资治通鉴精讲：年轻的汉军渴望建立功勋",
+    desc: "逐字精读《资治通鉴》，还原汉代政治格局与军事战略，读懂司马光编年史的深意。",
+    url: biliVideo("BV1pCChBiEjT"),
+    embedUrl: biliEmbed("BV1pCChBiEjT"),
+    tags: ["资治通鉴", "汉朝", "史学"],
+    theme: "scroll" as const,
+    type: "视频" as const,
+  },
+  sanguo_ost_waiguo: {
+    bvid: "BV1p1cMzmE7y",
+    title: "外国人听三国演义OST和诸葛亮骂王朗",
+    desc: "拉美小姐姐Waleska评价三国OST，感受跨文化的历史共鸣。147万播放。",
+    url: biliVideo("BV1p1cMzmE7y"),
+    embedUrl: biliEmbed("BV1p1cMzmE7y"),
+    tags: ["三国演义", "音乐", "文化输出"],
+    theme: "drama" as const,
+    type: "视频" as const,
+    views: 147105,
+  },
+  zhongguo_tongshi_full: {
+    url: `${BILI_BASE}/bangumi/play/ss33585`,
+    title: "中国通史·央视纪录片（官方全集）",
+    desc: "以丰富视听手段再现中华文明起源到1911年历史图景，全100集。官方正版授权。",
+    tags: ["中国通史", "纪录片", "CCTV"],
+    theme: "mountain" as const,
+    type: "视频" as const,
+  },
+  tongshi_ep6_xia: {
+    url: biliEp(326277),
+    title: "中国通史第6集：夏王朝觅踪",
+    desc: "以考古发现与历史文献互证，还原夏代王朝的存在证据与历史意义。",
+    tags: ["夏朝", "考古", "纪录片"],
+    theme: "bronze" as const,
+    type: "视频" as const,
+  },
+  tongshi_ep40_tongy: {
+    url: biliEp(327898),
+    title: "中国通史第40集：再造统一",
+    desc: "隋文帝杨坚结束南北朝分裂局面，完成中国历史上第二次大一统的历史背景分析。",
+    tags: ["隋朝", "统一", "纪录片"],
+    theme: "palace" as const,
+    type: "视频" as const,
+  },
+  tongshi_ep52_wudai: {
+    url: biliEp(328212),
+    title: "中国通史第52集：五代十国",
+    desc: "唐朝灭亡后53年间，中原经历五个朝代更迭。乱世中的武人政治与文官重建如何演变。",
+    tags: ["五代十国", "唐末", "纪录片"],
+    theme: "mountain" as const,
+    type: "视频" as const,
+  },
+  tongshi_ep70_hulibilie: {
+    url: biliEp(328368),
+    title: "中国通史第70集：忽必烈大帝",
+    desc: "蒙古铁骑如何转型为稳定农耕帝国？从成吉思汗到忽必烈，元朝制度建设的关键转折。",
+    tags: ["元朝", "忽必烈", "蒙古"],
+    theme: "landscape" as const,
+    type: "视频" as const,
+  },
+  tongshi_ep81_wangyangming: {
+    url: biliEp(329472),
+    title: "中国通史第81集：王阳明心学",
+    desc: "从龙场悟道到致良知，阳明心学为何在五百年后的今天依然引发广泛共鸣。",
+    tags: ["明朝", "王阳明", "心学"],
+    theme: "calligraphy" as const,
+    type: "视频" as const,
+  },
+  tongshi_ep90_taiwan: {
+    url: biliEp(329482),
+    title: "中国通史第90集：收复台湾",
+    desc: "郑成功如何以孤军之力收复被荷兰占领38年的台湾。史料还原完整经过。",
+    tags: ["清初", "郑成功", "台湾"],
+    theme: "greatwall" as const,
+    type: "视频" as const,
+  },
+};
+
+export const LATEST_CONTENT = [
+  { id: "lc-01", ...VERIFIED_VIDEOS.yizhongtian_sanguo, publishedAt: "2025.12.20", playCount: 328000 },
+  { id: "lc-02", ...VERIFIED_VIDEOS.tongshi_ep6_xia, publishedAt: "2025.12.15", playCount: 145000 },
+  { id: "lc-03", ...VERIFIED_VIDEOS.shuihu_shendu, publishedAt: "2025.12.18", playCount: 93920 },
+  { id: "lc-04", ...VERIFIED_VIDEOS.zizhi_tongjian, publishedAt: "2025.12.10", playCount: 67000 },
+  { id: "lc-05", ...VERIFIED_VIDEOS.daqin_jueqi, publishedAt: "2025.11.28", playCount: 210000 },
+  { id: "lc-06", ...VERIFIED_VIDEOS.wangliqun_hanwudi, publishedAt: "2025.11.20", playCount: 158000 },
+];
+
+export const HOT_RANKING = [
+  { rank: 1, title: "中国通史·从先秦到近现代", url: VERIFIED_VIDEOS.zhongguo_tongshi_full.url, playCount: 2300000 },
+  { rank: 2, title: "易中天品三国全集", url: VERIFIED_VIDEOS.yizhongtian_sanguo.url, playCount: 1870000 },
+  { rank: 3, title: "大秦崛起·百家讲坛", url: VERIFIED_VIDEOS.daqin_jueqi.url, playCount: 1540000 },
+  { rank: 4, title: "王立群讲汉武帝", url: VERIFIED_VIDEOS.wangliqun_hanwudi.url, playCount: 980000 },
+  { rank: 5, title: "战国七雄·百家讲坛", url: VERIFIED_VIDEOS.zhanguo_qixiong.url, playCount: 760000 },
+];
+
+export const CLASSICS_CONTENT = {
+  红楼梦: {
+    intro: "清代曹雪芹著，以贾、史、王、薛四大家族为背景，描绘封建末世的兴衰与儿女情长。",
+    theme: "lantern" as const,
+    accentColor: "#6b0010",
+    items: [
+      { id: "hlm-01", ...VERIFIED_VIDEOS.tongshi_ep81_wangyangming, theme: "lantern" as const },
+      { id: "hlm-02", ...VERIFIED_VIDEOS.zhongguo_tongshi_full, theme: "lantern" as const },
+    ],
+  },
+  三国演义: {
+    intro: "元末明初罗贯中著，演绎东汉末年三国鼎立的历史风云，英雄辈出。",
+    theme: "palace" as const,
+    accentColor: "#1A3A1A",
+    items: [{ id: "sgy-01", ...VERIFIED_VIDEOS.yizhongtian_sanguo }, { id: "sgy-02", ...VERIFIED_VIDEOS.sanguo_ost_waiguo }],
+  },
+  水浒传: {
+    intro: "元末明初施耐庵著，一百零八位好汉聚义梁山、反抗腐朽官府的传奇故事。",
+    theme: "landscape" as const,
+    accentColor: "#003d1f",
+    items: [{ id: "shs-01", ...VERIFIED_VIDEOS.shuihu_shendu }, { id: "shs-02", ...VERIFIED_VIDEOS.tongshi_ep52_wudai }],
+  },
+  西游记: {
+    intro: "明代吴承恩著，唐僧师徒四人历经九九八十一难取回真经的神魔奇幻之旅。",
+    theme: "mountain" as const,
+    accentColor: "#3A2A0A",
+    items: [
+      { id: "xyj-01", ...VERIFIED_VIDEOS.daqin_jueqi },
+      { id: "xyj-02", ...VERIFIED_VIDEOS.tongshi_ep40_tongy },
+    ],
+  },
+};
+
+export const SELECTED_FEED = [
+  { id: "sf-01", ...VERIFIED_VIDEOS.zhuzibajia, likes: 12400, collects: 8900, comments: 340 },
+  { id: "sf-02", ...VERIFIED_VIDEOS.zhanguo_qixiong, likes: 9800, collects: 6700, comments: 215 },
+  { id: "sf-03", ...VERIFIED_VIDEOS.wangliqun_qinshihuang, likes: 23500, collects: 15200, comments: 678 },
+  { id: "sf-04", ...VERIFIED_VIDEOS.tongshi_ep52_wudai, likes: 7600, collects: 4100, comments: 129 },
+  { id: "sf-05", ...VERIFIED_VIDEOS.tongshi_ep70_hulibilie, likes: 5400, collects: 3200, comments: 98 },
+  { id: "sf-06", ...VERIFIED_VIDEOS.tongshi_ep81_wangyangming, likes: 18900, collects: 13400, comments: 512 },
+  { id: "sf-07", ...VERIFIED_VIDEOS.chunqiu_wuba, likes: 11200, collects: 7800, comments: 287 },
+  { id: "sf-08", ...VERIFIED_VIDEOS.tongshi_ep90_taiwan, likes: 14300, collects: 9100, comments: 431 },
+];
+
+export const CATEGORY_CONTENT = [
+  { id: "cat-01", dynasty: "唐", contentType: "影视", ...VERIFIED_VIDEOS.tongshi_ep40_tongy, likes: 8900, collects: 5600 },
+  { id: "cat-02", dynasty: "唐", contentType: "历史", ...VERIFIED_VIDEOS.tongshi_ep52_wudai, likes: 6700, collects: 4100 },
+  { id: "cat-03", dynasty: "唐", contentType: "成语", ...VERIFIED_VIDEOS.zhongguo_tongshi_full, likes: 12300, collects: 8800 },
+  { id: "cat-04", dynasty: "宋", contentType: "历史", ...VERIFIED_VIDEOS.chunqiu_wuba, likes: 9400, collects: 6200 },
+  { id: "cat-05", dynasty: "宋", contentType: "历史", ...VERIFIED_VIDEOS.tongshi_ep40_tongy, likes: 18700, collects: 13500 },
+  { id: "cat-06", dynasty: "清", contentType: "影视", ...VERIFIED_VIDEOS.tongshi_ep90_taiwan, likes: 34500, collects: 21000 },
+  { id: "cat-07", dynasty: "明", contentType: "历史", ...VERIFIED_VIDEOS.tongshi_ep81_wangyangming, likes: 15600, collects: 10800 },
+  { id: "cat-08", dynasty: "元", contentType: "历史", ...VERIFIED_VIDEOS.tongshi_ep70_hulibilie, likes: 5400, collects: 3200 },
+  { id: "cat-09", dynasty: "明", contentType: "影视", ...VERIFIED_VIDEOS.tongshi_ep81_wangyangming, likes: 22100, collects: 16400 },
+  { id: "cat-10", dynasty: "清", contentType: "成语", ...VERIFIED_VIDEOS.tongshi_ep90_taiwan, likes: 7800, collects: 5100 },
+  { id: "cat-11", dynasty: "宋", contentType: "新词", ...VERIFIED_VIDEOS.tongshi_ep52_wudai, likes: 4300, collects: 2700 },
+  { id: "cat-12", dynasty: "唐", contentType: "影视", ...VERIFIED_VIDEOS.sanguo_ost_waiguo, likes: 29800, collects: 18900 },
+];

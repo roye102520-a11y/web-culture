@@ -1,33 +1,16 @@
 "use client";
 
-import { useEffect } from "react";
-
 import { Button } from "@/components/ui/button";
 
-export default function GlobalError({
-  error,
-  reset,
-}: {
-  error: Error & { digest?: string };
-  reset: () => void;
-}) {
-  useEffect(() => {
-    console.error(error);
-  }, [error]);
-
+export default function Error({ reset }: { reset: () => void }) {
   return (
-    <html lang="zh-CN">
-      <body className="bg-background text-foreground">
-        <div className="mx-auto flex min-h-screen w-full max-w-4xl flex-col items-center justify-center gap-4 px-6 text-center">
-          <h2 className="text-2xl font-semibold md:text-3xl">页面出现错误</h2>
-          <p className="max-w-xl text-sm text-muted-foreground md:text-base">
-            抱歉，系统遇到一个异常。你可以点击下方按钮进行重试。
-          </p>
-          <Button className="bg-primary text-primary-foreground hover:bg-primary/90" onClick={() => reset()}>
-            重试
-          </Button>
-        </div>
-      </body>
-    </html>
+    <div className="min-h-screen flex items-center justify-center px-6 py-16">
+      <div className="w-full max-w-md rounded-xl border border-border bg-card p-6 text-center">
+        <p className="text-base text-foreground">页面出错了，请稍后重试。</p>
+        <Button className="mt-4 bg-primary text-primary-foreground hover:bg-primary/90" onClick={reset}>
+          重试
+        </Button>
+      </div>
+    </div>
   );
 }

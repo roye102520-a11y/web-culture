@@ -1,0 +1,22 @@
+<svg width="1200" height="675" viewBox="0 0 1200 675" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1200" y2="675" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F3ECE4"/>
+      <stop offset="1" stop-color="#E8DED3"/>
+    </linearGradient>
+    <linearGradient id="hill1" x1="0" y1="400" x2="1200" y2="520" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#DCCFC2"/>
+      <stop offset="1" stop-color="#CFC0B2"/>
+    </linearGradient>
+    <linearGradient id="hill2" x1="0" y1="470" x2="1200" y2="620" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#C9B8A8"/>
+      <stop offset="1" stop-color="#B8A593"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="675" fill="url(#bg)"/>
+  <path d="M0 430C130 390 240 360 360 380C490 400 560 450 690 440C860 426 980 355 1200 330V675H0V430Z" fill="url(#hill1)"/>
+  <path d="M0 520C210 470 340 500 510 530C680 560 820 550 1200 470V675H0V520Z" fill="url(#hill2)"/>
+  <circle cx="960" cy="155" r="52" fill="#C9AA7A" fill-opacity="0.82"/>
+  <text x="72" y="120" fill="#6B5D4F" font-size="42" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-weight="600">文脉 WenMai</text>
+  <text x="72" y="170" fill="#7E6F62" font-size="24" font-family="system-ui, -apple-system, Segoe UI, sans-serif">历史文化内容封面占位图</text>
+</svg>

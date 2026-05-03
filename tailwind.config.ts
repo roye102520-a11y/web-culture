@@ -6,9 +6,18 @@ const config: Config = {
     "./app/**/*.{ts,tsx}",
     "./components/**/*.{ts,tsx}",
     "./lib/**/*.{ts,tsx}",
+    "./hooks/**/*.{ts,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        bg: "var(--bg)",
+        ink: "var(--ink)",
+        sub: "var(--sub)",
+        primary: "var(--primary)",
+        border: "var(--line)",
+      },
+    },
   },
   plugins: [],
 };
