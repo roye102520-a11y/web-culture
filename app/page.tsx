@@ -1,3 +1,4 @@
+import { BottomNav } from "@/components/home/BottomNav";
 import { CategoryBrowseSection } from "@/components/home/CategoryBrowseSection";
 import { CulturalPulseFeed } from "@/components/home/CulturalPulseFeed";
 import { ClassicsSection } from "@/components/home/ClassicsSection";
@@ -76,6 +77,7 @@ export default function HomePage() {
           <SelectedFeedSection />
         </div>
       </main>
+      <BottomNav />
     </div>
   );
 }

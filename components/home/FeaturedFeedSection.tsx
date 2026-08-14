@@ -6,7 +6,6 @@ import ReactMarkdown from "react-markdown";
 
 import { Button } from "@/components/ui/button";
 import { ContentCover, type ContentCoverTheme } from "@/components/ui/ContentCover";
-import { getContentLinkByTitle } from "@/data/content-adapters";
 import { EXTERNAL_LINK_PROPS, getContentExternalUrl } from "@/lib/external-links";
 
 type FeedType = "视频" | "播客" | "长文";
@@ -140,6 +139,7 @@ export function FeaturedFeedSection() {
                     title={item.title}
                     badge={item.type}
                     className="h-full w-full"
+                    videoSrc={item.videoSrc}
                   />
                 </div>
               </div>
@@ -163,12 +163,6 @@ export function FeaturedFeedSection() {
                   </div>
 
                   <div className="flex flex-wrap gap-2">
-                    <Link
-                      href={getContentLinkByTitle(item.title)}
-                      className="inline-flex h-8 items-center rounded-md border border-[#e7e5e4] bg-white px-3 text-sm text-[#57534E] hover:text-[#1C1917]"
-                    >
-                      阅读文章
-                    </Link>
                     <Button
                       size="sm"
                       className="bg-[#991B1B] text-white hover:bg-[#7F1D1D]"
@@ -182,7 +176,7 @@ export function FeaturedFeedSection() {
                       {...EXTERNAL_LINK_PROPS}
                       className="inline-flex items-center text-sm text-[#57534E] hover:text-[#991B1B]"
                     >
-                      外部素材 →
+                      外部链接 →
                     </a>
                   </div>
                 </div>

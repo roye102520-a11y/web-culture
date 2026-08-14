@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 
 import { Button } from "@/components/ui/button";
@@ -13,8 +12,6 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import { getAIErrorMessage } from "@/lib/client-ai";
-import { getContentLinkByTitle } from "@/data/content-adapters";
 
 type Channel = "推荐" | "名著探幽" | "考点解析" | "史海八卦";
 
@@ -32,14 +29,6 @@ interface ChatMessage {
   role: "assistant" | "user";
   text: string;
 }
-
-type AIRequestPayload = {
-  ok?: boolean;
-  message?: string;
-  errorCode?: string;
-  details?: string;
-  result?: { answer?: string; error?: string };
-};
 
 const channels: Channel[] = ["推荐", "名著探幽", "考点解析", "史海八卦"];
 
@@ -96,8 +85,6 @@ export default function ExplorePage() {
   const [activeItem, setActiveItem] = useState<FeedItem | null>(null);
   const [chatInput, setChatInput] = useState("");
   const [chat, setChat] = useState<ChatMessage[]>([]);
-  const [chatError, setChatError] = useState<string | null>(null);
-  const [isAnswering, setIsAnswering] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
@@ -123,46 +110,22 @@ export default function ExplorePage() {
       },
     ]);
     setChatInput("");
-    setChatError(null);
-    setIsAnswering(false);
   };
 
-  const sendMessage = async () => {
+  const sendMessage = () => {
     const trimmed = chatInput.trim();
-    if (!trimmed || isAnswering) return;
-
-    const item = activeItem;
-    const query = item
-      ? `请围绕《${item.title}》回答：${trimmed}\n\n内容摘要：${item.summary}`
-      : trimmed;
+    if (!trimmed) return;
 
     setChat((prev) => [
       ...prev,
       { id: `u-${Date.now()}`, role: "user", text: trimmed },
+      {
+        id: `ai-${Date.now() + 1}`,
+        role: "assistant",
+        text: "这是演示版对话骨架：后续可在这里接入真实 DeepSeek 返回内容。",
+      },
     ]);
     setChatInput("");
-    setChatError(null);
-    setIsAnswering(true);
-
-    try {
-      const res = await fetch("/api/ai/deepseek", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ query, mode: "free" }),
-      });
-      const data = (await res.json()) as AIRequestPayload;
-      if (!res.ok || !data.ok || !data.result?.answer) {
-        throw new Error(getAIErrorMessage(data, "暂时不可用"));
-      }
-      setChat((prev) => [
-        ...prev,
-        { id: `ai-${Date.now()}`, role: "assistant", text: data.result?.answer ?? "" },
-      ]);
-    } catch (error) {
-      setChatError(error instanceof Error ? error.message : "暂时不可用");
-    } finally {
-      setIsAnswering(false);
-    }
   };
 
   return (
@@ -206,14 +169,6 @@ export default function ExplorePage() {
 
                   <div className="flex flex-wrap items-center justify-between gap-3 pt-2">
                     <span className="text-xs text-[#78716C]">阅读量 {formatViews(item.views)}</span>
-
-                    <div className="flex flex-wrap gap-2">
-                      <Link
-                        href={getContentLinkByTitle(item.title)}
-                        className="inline-flex h-9 items-center rounded-lg border border-[#e7e5e4] bg-white px-3 text-sm text-[#57534E] hover:text-[#1C1917]"
-                      >
-                        阅读文章 →
-                      </Link>
 
                     <Sheet>
                       <SheetTrigger asChild>
@@ -262,19 +217,17 @@ export default function ExplorePage() {
                               onKeyDown={(event) => {
                                 if (event.key === "Enter") {
                                   event.preventDefault();
-                                  void sendMessage();
+                                  sendMessage();
                                 }
                               }}
                             />
-                            <Button onClick={() => void sendMessage()} disabled={isAnswering} className="bg-[#991B1B] text-white hover:bg-[#7F1D1D]">
-                              {isAnswering ? "生成中" : "发送"}
+                            <Button onClick={sendMessage} className="bg-[#991B1B] text-white hover:bg-[#7F1D1D]">
+                              发送
                             </Button>
                           </div>
-                          {chatError ? <p className="mt-2 text-sm text-red-700">{chatError}</p> : null}
                         </div>
                       </SheetContent>
                     </Sheet>
-                    </div>
                   </div>
                 </div>
               </article>

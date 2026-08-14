@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { Menu, Search, Settings } from "lucide-react";
+import { Menu, Search } from "lucide-react";
 import { FormEvent, useMemo, useState } from "react";
 
 import { Button } from "@/components/ui/button";
@@ -18,7 +18,6 @@ const navItems = [
   { href: "/gossip", label: "八卦" },
   { href: "/ranking", label: "榜单" },
   { href: "/beta", label: "公测" },
-  { href: "/settings", label: "设置" },
   { href: "/profile", label: "我的" },
 ] as const;
 
@@ -83,11 +82,6 @@ export function Navbar() {
           </form>
           <Link href="/question/new">
             <Button className="bg-[#D4A017] text-white hover:bg-[#b58711]">发布提问</Button>
-          </Link>
-          <Link href="/settings" aria-label="设置">
-            <Button variant="outline" size="icon" className="rounded-xl bg-white">
-              <Settings className="h-4 w-4" />
-            </Button>
           </Link>
         </div>
 
