@@ -7,11 +7,8 @@ import { Button } from "@/components/ui/button";
 import { ContentCover } from "@/components/ui/ContentCover";
 import { selectedFeedFromCsv } from "@/data/content-adapters";
 import { getAIErrorMessage } from "@/lib/client-ai";
-import { EXTERNAL_LINK_PROPS, getContentExternalUrl } from "@/lib/external-links";
-import { fmtCount } from "@/lib/format";
 
-type FeedType = "视频";
-type FeedTab = "全部" | FeedType;
+type FeedType = "图文";
 
 type AIRequestPayload = {
   ok?: boolean;
@@ -29,43 +26,30 @@ type FeedItem = {
   likes: number;
   saves: number;
   comments: number;
-  playCount: number;
   theme: "palace" | "greatwall" | "scroll" | "lantern" | "landscape" | "drama" | "calligraphy" | "mountain" | "bronze" | "tea";
   url: string;
 };
 
 const PAGE_SIZE = 8;
-const tabs: FeedTab[] = ["全部", "视频"];
 const items: FeedItem[] = selectedFeedFromCsv.map((item) => ({
   id: item.id,
-  type: item.type,
+  type: "图文",
   title: item.title,
   summary: item.desc,
   likes: item.likes,
   saves: item.collects,
   comments: item.comments,
-  playCount: "views" in item && typeof item.views === "number" ? item.views : 0,
   theme: item.theme,
   url: item.url,
 }));
 
 export function SelectedFeedSection() {
-  const [tab, setTab] = useState<FeedTab>("全部");
   const [page, setPage] = useState(1);
   const [loadingMap, setLoadingMap] = useState<Record<string, boolean>>({});
   const [errorMap, setErrorMap] = useState<Record<string, string | null>>({});
   const [guideMap, setGuideMap] = useState<Record<string, string>>({});
 
-  const filtered = useMemo(() => {
-    return tab === "全部" ? items : items.filter((item) => item.type === tab);
-  }, [tab]);
-
-  const visible = useMemo(() => filtered.slice(0, page * PAGE_SIZE), [filtered, page]);
-
-  const onSwitchTab = (next: FeedTab) => {
-    setTab(next);
-    setPage(1);
-  };
+  const visible = useMemo(() => items.slice(0, page * PAGE_SIZE), [page]);
 
   const loadMore = () => setPage((prev) => prev + 1);
 
@@ -93,7 +77,7 @@ export function SelectedFeedSection() {
     }
   };
 
-  const hasMore = visible.length < filtered.length;
+  const hasMore = visible.length < items.length;
 
   return (
     <section id="section-selected-feed" className="space-y-4">
@@ -103,18 +87,7 @@ export function SelectedFeedSection() {
       </div>
 
       <div className="flex gap-2 overflow-x-auto pb-1">
-        {tabs.map((item) => (
-          <button
-            key={item}
-            type="button"
-            onClick={() => onSwitchTab(item)}
-            className={`rounded-full px-4 py-2 text-sm transition ${
-              tab === item ? 'bg-[#991B1B] text-white' : 'bg-white text-[#57534E] ring-1 ring-[#efeae7] hover:text-[#1C1917]'
-            }`}
-          >
-            {item}
-          </button>
-        ))}
+        <span className="rounded-full bg-[#991B1B] px-4 py-2 text-sm text-white">图文精选</span>
       </div>
 
       <div className="space-y-3">
@@ -134,9 +107,12 @@ export function SelectedFeedSection() {
                   {item.summary}
                 </p>
                 <div className="text-xs text-[#78716C]">
-                  👍 {item.likes} | 🔖 {item.saves} | 💬 {item.comments} | ▶ {fmtCount(item.playCount)}
+                  👍 {item.likes} | 🔖 {item.saves} | 💬 {item.comments}
                 </div>
                 <div className="flex flex-wrap gap-2 pt-1">
+                  <Button asChild size="sm" variant="outline" className="bg-white text-[#57534E]">
+                    <Link href={item.url}>阅读全文</Link>
+                  </Button>
                   <Button
                     size="sm"
                     className="bg-[#991B1B] text-white hover:bg-[#7F1D1D]"
@@ -145,13 +121,6 @@ export function SelectedFeedSection() {
                   >
                     DeepSeek导读
                   </Button>
-                  <a
-                    href={item.url ?? getContentExternalUrl(item.type, item.title)}
-                    {...EXTERNAL_LINK_PROPS}
-                    className="inline-flex items-center rounded-lg border border-[#e7e5e4] bg-white px-3 py-1.5 text-sm text-[#57534E] hover:text-[#1C1917]"
-                  >
-                    外部链接 →
-                  </a>
                 </div>
 
                 {loadingMap[item.id] && (
