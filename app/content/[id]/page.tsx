@@ -3,7 +3,7 @@ import Link from "next/link";
 
 import { ContentCover } from "@/components/ui/ContentCover";
 import { allContentRecords, getContentById } from "@/data/content-adapters";
-import { getContentBodyByTitle } from "@/data/content-bodies";
+import { getContentBodyByTitle, getContentLeadByTitle } from "@/data/content-bodies";
 
 interface Props {
   params: Promise<{ id: string }>;
@@ -45,6 +45,7 @@ export default async function Page({ params }: Props) {
   }
 
   const articleBody = getContentBodyByTitle(content.title) ?? buildArticleBody(content);
+  const articleLead = getContentLeadByTitle(content.title);
 
   return (
     <div className="min-h-screen bg-[#F5F5F4]">
@@ -55,6 +56,12 @@ export default async function Page({ params }: Props) {
           <div className="text-xs text-[#78716C]">
             分类：{content.category} · 标签：{content.tags} · 难度：{content.difficulty} · 来源：{content.source}
           </div>
+          {articleLead ? (
+            <aside className="rounded-lg border-l-4 border-[#991B1B] bg-[#FAF5F3] px-4 py-3">
+              <p className="text-xs font-semibold text-[#991B1B]">一句话看懂</p>
+              <p className="mt-1 text-base leading-7 text-[#3F3A37]">{articleLead}</p>
+            </aside>
+          ) : null}
           <section className="space-y-3">
             <h2 className="text-lg font-semibold text-[#1C1917]">正文导读</h2>
             {articleBody.map((paragraph, index) => (

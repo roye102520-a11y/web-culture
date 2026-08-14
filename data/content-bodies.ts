@@ -405,6 +405,15 @@ export const contentBodiesByTitle: Record<string, string[]> = {
   ),
 };
 
+const contentLeadsByTitle: Record<string, string> = {
+  长安十二时辰历史细节考据:
+    "这部剧未必逐项复原了唐代，却成功还原了一座古代超级城市如何运转、生活和制造危险。",
+};
+
 export function getContentBodyByTitle(title: string) {
   return contentBodiesByTitle[title] ?? null;
+}
+
+export function getContentLeadByTitle(title: string) {
+  return contentLeadsByTitle[title] ?? null;
 }

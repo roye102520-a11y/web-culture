@@ -1,60 +1,55 @@
-"use client";
+import { ArrowRight, Clock3 } from "lucide-react";
+import Link from "next/link";
 
-import { RefreshCcw, Search } from "lucide-react";
-import { AnimatePresence, motion } from "framer-motion";
-import { useMemo, useState } from "react";
+import { ContentCover } from "@/components/ui/ContentCover";
 
-const quotes = [
-  { text: "大漠孤烟直，长河落日圆。", tone: "from-[#fffdfb] via-[#f5efea] to-[#f1e6df]" },
-  { text: "江流天地外，山色有无中。", tone: "from-[#fffefc] via-[#f7f3ee] to-[#efe8e1]" },
-  { text: "纸上得来终觉浅，绝知此事要躬行。", tone: "from-[#fffdfc] via-[#f5f1ec] to-[#ece6df]" },
-];
+const featuredArticle = {
+  href: "/content/18",
+  title: "《长安十二时辰》为什么让唐代长安“活起来了”？",
+  titleEn: "How The Longest Day in Chang'an Brought Tang-Era Chang'an to Life",
+  description: "它的历史感不只来自服饰和建筑，更来自坊市、宵禁、官署与市井生活共同组成的一座城市。",
+};
 
 export function TodayCultureCard() {
-  const [index, setIndex] = useState(0);
-
-  const current = useMemo(() => quotes[index], [index]);
-
-  const refresh = () => {
-    setIndex((prev) => (prev + 1) % quotes.length);
-  };
-
   return (
-    <section className="space-y-3">
-      <div className="relative overflow-hidden rounded-2xl shadow-sm">
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={index}
-            initial={{ opacity: 0, filter: "blur(6px)" }}
-            animate={{ opacity: 1, filter: "blur(0px)" }}
-            exit={{ opacity: 0, filter: "blur(4px)" }}
-            transition={{ duration: 0.42, ease: [0.22, 1, 0.36, 1] }}
-            className={`rounded-2xl bg-gradient-to-br ${current.tone} px-6 py-10 text-center md:px-8 md:py-12`}
-          >
-            <p className="text-xs tracking-[0.18em] text-[#78716C]">文化今日点亮</p>
-            <p className="mx-auto mt-4 max-w-2xl text-2xl font-semibold tracking-wide text-[#1C1917] md:text-3xl">
-              {current.text}
-            </p>
-          </motion.div>
-        </AnimatePresence>
-
-        <button
-          type="button"
-          onClick={refresh}
-          className="absolute bottom-3 right-3 inline-flex h-9 w-9 items-center justify-center rounded-full bg-white/80 text-[#991B1B] shadow-sm transition hover:bg-white"
-        >
-          <RefreshCcw className="h-4 w-4" />
-        </button>
+    <section aria-labelledby="today-culture-title" className="space-y-3">
+      <div>
+        <p className="text-xs font-medium text-[#991B1B]">UNDERSTAND CHINA TODAY</p>
+        <h1 id="today-culture-title" className="mt-1 text-xl font-semibold text-[#1C1917] md:text-2xl">
+          今日看懂一个中国文化点
+        </h1>
       </div>
 
-      <label className="relative block">
-        <Search className="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-[#78716C]" />
-        <input
-          type="text"
-          placeholder="搜索你想了解的文史奥秘..."
-          className="h-12 w-full rounded-2xl bg-white pl-11 pr-4 text-sm text-[#1C1917] shadow-sm ring-1 ring-transparent outline-none transition focus:ring-[#991B1B]/45"
+      <article className="grid overflow-hidden rounded-xl bg-white shadow-sm ring-1 ring-[#ebe6e2] md:grid-cols-[minmax(0,1.08fr)_minmax(320px,0.92fr)]">
+        <ContentCover
+          theme="drama"
+          title={featuredArticle.title}
+          badge="影视对读"
+          className="min-h-56 rounded-none md:min-h-80"
         />
-      </label>
+
+        <div className="flex flex-col justify-center p-5 md:p-8">
+          <div className="flex flex-wrap items-center gap-2 text-xs text-[#78716C]">
+            <span className="rounded-full bg-[#F7EEEE] px-2.5 py-1 font-medium text-[#991B1B]">唐代城市生活</span>
+            <span className="inline-flex items-center gap-1">
+              <Clock3 className="h-3.5 w-3.5" aria-hidden="true" />
+              约 8 分钟
+            </span>
+          </div>
+
+          <h2 className="mt-4 text-2xl font-semibold leading-9 text-[#1C1917]">{featuredArticle.title}</h2>
+          <p className="mt-2 text-sm leading-6 text-[#78716C]">{featuredArticle.titleEn}</p>
+          <p className="mt-5 text-base leading-7 text-[#57534E]">{featuredArticle.description}</p>
+
+          <Link
+            href={featuredArticle.href}
+            className="mt-6 inline-flex w-fit items-center gap-2 rounded-lg bg-[#991B1B] px-4 py-2.5 text-sm font-medium text-white transition hover:bg-[#7F1D1D] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#991B1B] focus-visible:ring-offset-2"
+          >
+            读懂这座长安
+            <ArrowRight className="h-4 w-4" aria-hidden="true" />
+          </Link>
+        </div>
+      </article>
     </section>
   );
 }
