@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useMemo, useState } from "react";
 import ReactMarkdown from "react-markdown";
 
@@ -18,6 +19,7 @@ type QuestionItem = {
   id: string;
   title: string;
   source: string;
+  contentId: number;
 };
 
 const questions: QuestionItem[] = [
@@ -25,31 +27,37 @@ const questions: QuestionItem[] = [
     id: "cq-1",
     title: "《竹书纪年》与《史记》关于商系谱差异，应以哪本为准？",
     source: "竹书纪年",
+    contentId: 40,
   },
   {
     id: "cq-2",
     title: "里耶秦简“迁陵县”的文字写法，与汉地统治关系如何解读？",
     source: "里耶秦简",
+    contentId: 41,
   },
   {
     id: "cq-3",
     title: "《诗经》之“相如”于何时、何人语料最早可系年？",
     source: "诗经",
+    contentId: 42,
   },
   {
     id: "cq-4",
     title: "《四书集注》中与阳明后学批判朱子的对比核心是什么？",
     source: "四书集注",
+    contentId: 43,
   },
   {
     id: "cq-5",
     title: "《资治通鉴》与《通鉴纪事本末》在叙事目的上有何不同？",
     source: "资治通鉴",
+    contentId: 44,
   },
   {
     id: "cq-6",
     title: "《汉书·艺文志》为何成为后世目录学分流的关键节点？",
     source: "汉书",
+    contentId: 45,
   },
 ];
 
@@ -100,7 +108,9 @@ export function ClassicsExploreSection() {
               </div>
 
               <div className="mt-3 flex flex-wrap gap-2">
-                <Button variant="outline" size="sm" className="bg-white text-[#57534E]">精读 →</Button>
+                <Button asChild variant="outline" size="sm" className="bg-white text-[#57534E]">
+                  <Link href={`/content/${item.contentId}`}>精读 →</Link>
+                </Button>
                 <Button
                   size="sm"
                   className="bg-[#991B1B] text-white hover:bg-[#7F1D1D]"
