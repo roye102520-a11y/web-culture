@@ -3,6 +3,7 @@ import Link from "next/link";
 
 import { ContentCover } from "@/components/ui/ContentCover";
 import { getContentById } from "@/data/content-adapters";
+import { getContentBodyByTitle } from "@/data/content-bodies";
 
 interface Props {
   params: Promise<{ id: string }>;
@@ -37,7 +38,7 @@ export default async function Page({ params }: Props) {
     notFound();
   }
 
-  const articleBody = buildArticleBody(content);
+  const articleBody = getContentBodyByTitle(content.title) ?? buildArticleBody(content);
 
   return (
     <div className="min-h-screen bg-[#F5F5F4]">
