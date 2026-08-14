@@ -2,11 +2,17 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 
 import { ContentCover } from "@/components/ui/ContentCover";
-import { getContentById } from "@/data/content-adapters";
+import { allContentRecords, getContentById } from "@/data/content-adapters";
 import { getContentBodyByTitle } from "@/data/content-bodies";
 
 interface Props {
   params: Promise<{ id: string }>;
+}
+
+export function generateStaticParams() {
+  return allContentRecords.map((content) => ({
+    id: String(content.id),
+  }));
 }
 
 function buildArticleBody(content: NonNullable<ReturnType<typeof getContentById>>) {
