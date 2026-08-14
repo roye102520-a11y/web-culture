@@ -1,6 +1,7 @@
 "use client";
 
 import ReactMarkdown from "react-markdown";
+import Link from "next/link";
 import { useMemo, useState } from "react";
 
 import { Button } from "@/components/ui/button";
@@ -222,9 +223,9 @@ export default function ExamPage() {
               已完成 <span className="font-semibold text-[#991B1B]">{doneCount}</span> / 共 {filtered.length} 题
             </p>
 
-            <button type="button" className="w-full rounded-lg bg-[#f8f4f2] px-3 py-2 text-left text-sm text-[#991B1B]">
+            <Link href="/mine" className="block w-full rounded-lg bg-[#f8f4f2] px-3 py-2 text-left text-sm text-[#991B1B]">
               错题收藏入口 →
-            </button>
+            </Link>
 
             <div className="space-y-2">
               <p className="text-xs font-medium tracking-wide text-[#78716C]">快速跳题</p>

@@ -1,4 +1,5 @@
 import { User } from "lucide-react";
+import Link from "next/link";
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
@@ -112,9 +113,12 @@ export default function MinePage() {
                       <p className="text-sm font-medium text-[#1C1917] md:text-base">{item.title}</p>
                       <p className="mt-1 text-xs text-gray-500">提问时间：{item.time}</p>
                     </div>
-                    <button type="button" className="shrink-0 text-sm text-[#991B1B] hover:text-[#7F1D1D]">
-                      查看
-                    </button>
+                    <Link
+                      href={`/look/deepseek?q=${encodeURIComponent(item.title)}`}
+                      className="shrink-0 text-sm text-[#991B1B] hover:text-[#7F1D1D]"
+                    >
+                      继续追问
+                    </Link>
                   </div>
                 ))}
               </div>

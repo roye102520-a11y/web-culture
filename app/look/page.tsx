@@ -2,6 +2,7 @@
 
 import { ChevronLeft } from "lucide-react";
 import { motion } from "framer-motion";
+import { useRouter } from "next/navigation";
 
 import { RankingCardBase } from "@/components/ranking/RankingCardBase";
 import { Button } from "@/components/ui/button";
@@ -23,6 +24,7 @@ const dynastyOptions: Array<{ value: RankingDynasty; label: string }> = [
 ];
 
 export default function LookPage() {
+  const router = useRouter();
   const { filters, items, total, isLoading, errorMessage, setBoard, setTopic, setDynasty, retry } =
     useLookRankings();
 
@@ -31,7 +33,11 @@ export default function LookPage() {
       <main className="mx-auto w-full max-w-3xl px-4 py-8 md:px-6 md:py-10">
         <section className="rounded-3xl bg-gradient-to-b from-[#FBF7F5] to-[#F7F6F2] p-5 shadow-sm ring-1 ring-[#991B1B]/8 md:p-6">
           <header className="flex items-center justify-between">
-            <button type="button" className="inline-flex items-center gap-1 text-sm text-[#57534E]">
+            <button
+              type="button"
+              onClick={() => router.back()}
+              className="inline-flex items-center gap-1 text-sm text-[#57534E]"
+            >
               <ChevronLeft className="h-4 w-4 text-[#991B1B]" />
               返回
             </button>

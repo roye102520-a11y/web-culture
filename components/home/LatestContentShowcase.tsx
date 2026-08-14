@@ -2,7 +2,6 @@ import Link from "next/link";
 
 import { ContentCover } from "@/components/ui/ContentCover";
 import { latestContentFromCsv } from "@/data/content-adapters";
-import { EXTERNAL_LINK_PROPS } from "@/lib/external-links";
 import { fmtCount } from "@/lib/format";
 
 const hotTop5 = latestContentFromCsv
@@ -37,9 +36,9 @@ export function LatestContentShowcase() {
                   <span>{item.publishedAt} 上线</span>
                   <span>播放量 {fmtCount(item.playCount)}</span>
                 </div>
-                <a href={item.url} {...EXTERNAL_LINK_PROPS} className="inline-block text-sm text-[#991B1B] hover:text-[#7F1D1D]">
+                <Link href={item.url} className="inline-block text-sm text-[#991B1B] hover:text-[#7F1D1D]">
                   查看详情 →
-                </a>
+                </Link>
               </div>
             </article>
           ))}
@@ -49,17 +48,16 @@ export function LatestContentShowcase() {
           <h3 className="text-base font-semibold text-[#1C1917]">历史热听榜</h3>
           <div className="mt-3 space-y-2">
             {hotTop5.map((item, index) => (
-              <a
+              <Link
                 key={item.rank}
                 href={item.url}
-                {...EXTERNAL_LINK_PROPS}
                 className="flex items-start gap-2 rounded-lg px-2 py-1.5 hover:bg-[#faf7f5]"
               >
                 <span className="w-5 shrink-0 text-sm font-semibold text-[#991B1B]">{index + 1}</span>
                 <span className="text-sm text-[#57534E] [display:-webkit-box] [-webkit-box-orient:vertical] [-webkit-line-clamp:2] overflow-hidden">
                   {item.title}
                 </span>
-              </a>
+              </Link>
             ))}
           </div>
         </aside>

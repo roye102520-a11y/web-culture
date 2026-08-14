@@ -9,6 +9,7 @@ import { classicsContentFromCsv } from "@/data/content-adapters";
 type ClassicBook = "红楼梦" | "三国演义" | "水浒传" | "西游记";
 type ClassicCard = {
   id: string;
+  href: string;
   title: string;
   summary: string;
   type: "视频" | "播客" | "长文";
@@ -29,6 +30,7 @@ export function ClassicsSection() {
       classicsContentFromCsv[activeBook].map(
         (card): ClassicCard => ({
           id: `csv-${card.id}`,
+          href: `/content/${card.id}`,
           title: card.title,
           summary: card.content,
           type: "长文",
@@ -86,10 +88,10 @@ export function ClassicsSection() {
                   {card.summary}
                 </p>
                 <Link
-                  href={`/classics?book=${encodeURIComponent(activeBook)}`}
+                  href={card.href}
                   className="mt-3 inline-block text-xs text-[#991B1B] hover:text-[#7F1D1D]"
                 >
-                  进入专区 →
+                  阅读正文 →
                 </Link>
               </article>
             ))}
