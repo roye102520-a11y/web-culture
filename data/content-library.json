@@ -405,5 +405,27 @@
     "difficulty": "中",
     "image": "",
     "source": "制度研究"
+  },
+  {
+    "id": 38,
+    "title": "城市气质与地方志",
+    "content": "从地方志里的山川、道路、人物、灾荒和商贸记录，理解一座城市气质如何慢慢形成。",
+    "type": "podcast",
+    "category": "首页内容",
+    "tags": "地方志-城市史-播客",
+    "difficulty": "中",
+    "image": "",
+    "source": "文史播客"
+  },
+  {
+    "id": 39,
+    "title": "天津港口文化贸易网络",
+    "content": "从码头、运河、商贸网络和近代口岸变化，理解天津城市性格与港埠文化。",
+    "type": "podcast",
+    "category": "首页内容",
+    "tags": "天津-港埠文化-播客",
+    "difficulty": "中",
+    "image": "",
+    "source": "文史播客"
   }
 ]
