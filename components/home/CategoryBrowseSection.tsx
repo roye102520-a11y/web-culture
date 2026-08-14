@@ -1,9 +1,9 @@
 "use client";
 
+import Link from "next/link";
 import { useMemo, useState } from "react";
 import { ContentCover, type ContentCoverTheme } from "@/components/ui/ContentCover";
 import { categoryContentFromCsv } from "@/data/content-adapters";
-import { EXTERNAL_LINK_PROPS } from "@/lib/external-links";
 
 type Dynasty = "唐" | "宋" | "元" | "明" | "清";
 type ContentType = "成语" | "新词" | "影视" | "历史";
@@ -109,9 +109,9 @@ export function CategoryBrowseSection({ title = "分类浏览" }: CategoryBrowse
                 {item.summary}
               </p>
               <p className="text-xs text-[#78716C]">👍 {item.likes} · ⭐ {item.favorites}</p>
-              <a href={item.url} {...EXTERNAL_LINK_PROPS} className="inline-block text-xs text-[#991B1B] hover:text-[#7F1D1D]">
-                播放 / 查看详情 →
-              </a>
+              <Link href={item.url} className="inline-block text-xs text-[#991B1B] hover:text-[#7F1D1D]">
+                查看详情 →
+              </Link>
             </div>
           </article>
         ))}

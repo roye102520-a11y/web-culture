@@ -1,9 +1,11 @@
 "use client";
 
+import Link from "next/link";
 import { useMemo, useState } from "react";
 import ReactMarkdown from "react-markdown";
 
 import { Button } from "@/components/ui/button";
+import { getContentLinkByTitle } from "@/data/content-adapters";
 import { getAIErrorMessage } from "@/lib/client-ai";
 
 type AIRequestPayload = {
@@ -100,7 +102,12 @@ export function ClassicsExploreSection() {
               </div>
 
               <div className="mt-3 flex flex-wrap gap-2">
-                <Button variant="outline" size="sm" className="bg-white text-[#57534E]">精读 →</Button>
+                <Link
+                  href={getContentLinkByTitle(item.title)}
+                  className="inline-flex h-8 items-center rounded-md border border-[#e7e5e4] bg-white px-3 text-sm text-[#57534E] hover:text-[#1C1917]"
+                >
+                  精读 →
+                </Link>
                 <Button
                   size="sm"
                   className="bg-[#991B1B] text-white hover:bg-[#7F1D1D]"
@@ -138,13 +145,18 @@ export function ClassicsExploreSection() {
                 <p className="text-sm text-[#57534E] [display:-webkit-box] [-webkit-box-orient:vertical] [-webkit-line-clamp:2] overflow-hidden">
                   {item.title}
                 </p>
-                <button
-                  type="button"
-                  className="mt-1 text-xs text-[#991B1B] hover:text-[#7F1D1D]"
-                  onClick={() => void runQuickAnswer(item)}
-                >
-                  DeepSeek快答 →
-                </button>
+                <div className="mt-1 flex flex-wrap gap-2">
+                  <Link href={getContentLinkByTitle(item.title)} className="text-xs text-[#991B1B] hover:text-[#7F1D1D]">
+                    阅读文章 →
+                  </Link>
+                  <button
+                    type="button"
+                    className="text-xs text-[#991B1B] hover:text-[#7F1D1D]"
+                    onClick={() => void runQuickAnswer(item)}
+                  >
+                    DeepSeek快答 →
+                  </button>
+                </div>
               </div>
             ))}
           </div>

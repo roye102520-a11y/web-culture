@@ -1,4 +1,4 @@
-type DeepSeekMode = "chat" | "qa" | "summarize" | "community_q" | "video_guide" | "free" | "mcq";
+type DeepSeekMode = "chat" | "qa" | "summarize" | "community_q" | "video_guide" | "free" | "mcq" | "exam_help" | "history_explain";
 
 export interface DeepSeekPayload {
   query: string;
@@ -9,6 +9,7 @@ export interface DeepSeekPayload {
 export interface DeepSeekRequest {
   mode: DeepSeekMode;
   payload: DeepSeekPayload;
+  apiKey?: string;
 }
 
 export interface DeepSeekResponse {
@@ -42,6 +43,8 @@ const MODE_SYSTEM_PROMPTS: Record<DeepSeekMode, string> = {
   video_guide: "你是文脉平台的导读助手，请给出结构化提纲、阅读重点和问题引导。",
   free: "你是文脉平台的自由问答助手，回答要准确、清晰，并尽可能给出史料来源线索。",
   mcq: "你是文脉考试讲解助手，请按考试思路解释选项逻辑，先给结论再给推理与记忆法。",
+  exam_help: "你是文脉考试答疑助手，请按考试类型、题干信息、选项逻辑、知识点迁移四步讲解。",
+  history_explain: "你是文脉历史四段讲解助手，请输出错因分析、正确推理、历史背景、延伸知识，并保持适合学生复盘。",
 };
 
 // 核心意图：构建统一的 DeepSeek 消息格式，确保不同模式有固定系统提示词。
@@ -80,13 +83,13 @@ function parseJsonWithRetry(text: string, maxRetries = 1): Record<string, unknow
 }
 
 // 核心意图：统一 DeepSeek 调用入口，处理网络异常与 JSON 兜底逻辑。
-export async function callDeepSeek({ mode, payload }: DeepSeekRequest): Promise<DeepSeekResponse> {
-  const apiKey = process.env.DEEPSEEK_API_KEY;
+export async function callDeepSeek({ mode, payload, apiKey: apiKeyOverride }: DeepSeekRequest): Promise<DeepSeekResponse> {
+  const apiKey = apiKeyOverride?.trim() || process.env.DEEPSEEK_API_KEY;
 
   if (!apiKey || apiKey === "your_api_key_here") {
     return {
       mode,
-      answer: "当前未配置有效的 DeepSeek API Key，请在 .env.local 中补充。",
+      answer: "当前未配置有效的 DeepSeek API Key，请在设置页输入，或在 .env.local 中补充。",
       error: "missing_api_key",
     };
   }

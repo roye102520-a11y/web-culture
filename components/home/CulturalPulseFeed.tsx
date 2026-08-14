@@ -3,6 +3,8 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 
+import { getContentLinkByTitle } from "@/data/content-adapters";
+
 const feedItems = [
   {
     id: "pulse-1",
@@ -33,18 +35,19 @@ export function CulturalPulseFeed() {
 
       <div className="flex gap-3 overflow-x-auto pb-1">
         {feedItems.map((item) => (
-          <motion.article
-            key={item.id}
-            initial={{ opacity: 0, y: 8 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.5 }}
-            whileHover={{ y: -3, scale: 1.01 }}
-            transition={{ duration: 0.25, ease: "easeOut" }}
-            className="min-w-[260px] rounded-2xl bg-white px-5 py-4 shadow-sm ring-1 ring-[#efebe8] md:min-w-[320px]"
-          >
-            <p className="text-sm leading-7 text-[#1C1917]">{item.title}</p>
-            <p className="mt-3 text-xs text-[#991B1B]">{item.cta}</p>
-          </motion.article>
+          <Link key={item.id} href={getContentLinkByTitle(item.title)} className="block">
+            <motion.article
+              initial={{ opacity: 0, y: 8 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.5 }}
+              whileHover={{ y: -3, scale: 1.01 }}
+              transition={{ duration: 0.25, ease: "easeOut" }}
+              className="min-w-[260px] rounded-2xl bg-white px-5 py-4 shadow-sm ring-1 ring-[#efebe8] md:min-w-[320px]"
+            >
+              <p className="text-sm leading-7 text-[#1C1917]">{item.title}</p>
+              <p className="mt-3 text-xs text-[#991B1B]">{item.cta} →</p>
+            </motion.article>
+          </Link>
         ))}
       </div>
     </section>
