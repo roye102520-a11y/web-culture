@@ -28,6 +28,7 @@ type FeedItem = {
   comments: number;
   theme: "palace" | "greatwall" | "scroll" | "lantern" | "landscape" | "drama" | "calligraphy" | "mountain" | "bronze" | "tea";
   url: string;
+  coverImage: string;
 };
 
 const PAGE_SIZE = 8;
@@ -41,6 +42,7 @@ const items: FeedItem[] = selectedFeedFromCsv.map((item) => ({
   comments: item.comments,
   theme: item.theme,
   url: item.url,
+  coverImage: item.image,
 }));
 
 export function SelectedFeedSection() {
@@ -95,7 +97,7 @@ export function SelectedFeedSection() {
           <article key={item.id} className="rounded-2xl bg-white p-3 shadow-sm ring-1 ring-[#f0ece9]">
             <div className="grid gap-3 md:grid-cols-[40%_1fr]">
               <div className="relative overflow-hidden rounded-xl">
-                <ContentCover theme={item.theme} title={item.title} badge={item.type} className="aspect-video" />
+                <ContentCover theme={item.theme} title={item.title} badge={item.type} className="aspect-video" imageSrc={item.coverImage} />
               </div>
 
               <div className="space-y-2 p-1">

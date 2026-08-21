@@ -36,6 +36,7 @@ export function ContentCard({ item }: { item: ContentCardType }) {
           title={item.title}
           badge={item.type === "视频" ? "🎬 视频" : item.type === "播客" ? "🎧 播客" : "📝 长文"}
           className="aspect-video"
+          imageSrc={item.coverImage}
         />
       </div>
 

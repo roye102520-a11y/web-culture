@@ -20,6 +20,7 @@ interface ContentCoverProps {
   badge?: string;
   className?: string;
   videoSrc?: string;
+  imageSrc?: string;
 }
 
 const THEMES: Record<ContentCoverTheme, { gradient: string; label: string; icon: string; imgSrc?: string }> = {
@@ -55,10 +56,11 @@ const THEMES: Record<ContentCoverTheme, { gradient: string; label: string; icon:
   tea: { gradient: "from-[#0a1400] to-[#1f2e00]", label: "茶道", icon: "🍵", imgSrc: "/images/tea.jpg" },
 };
 
-export function ContentCover({ theme, title, badge, className, videoSrc }: ContentCoverProps) {
+export function ContentCover({ theme, title, badge, className, videoSrc, imageSrc }: ContentCoverProps) {
   const cfg = THEMES[theme];
   const [imageFailed, setImageFailed] = useState(false);
-  const useImage = !videoSrc && Boolean(cfg.imgSrc) && !imageFailed;
+  const coverSrc = imageSrc || cfg.imgSrc || "";
+  const useImage = !videoSrc && Boolean(coverSrc) && !imageFailed;
 
   return (
     <div className={`relative overflow-hidden rounded-xl bg-gradient-to-br ${cfg.gradient} ${className ?? ""}`}>
@@ -75,7 +77,7 @@ export function ContentCover({ theme, title, badge, className, videoSrc }: Conte
 
       {useImage ? (
         <img
-          src={cfg.imgSrc}
+          src={coverSrc}
           alt={title ?? cfg.label}
           className="absolute inset-0 h-full w-full object-cover"
           loading="lazy"
@@ -83,7 +85,7 @@ export function ContentCover({ theme, title, badge, className, videoSrc }: Conte
         />
       ) : null}
 
-      <svg className="absolute inset-0 h-full w-full opacity-35" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+      <svg className={`absolute inset-0 h-full w-full ${useImage ? "opacity-0" : "opacity-35"}`} viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
         <path d="M0,72 C15,58 28,64 42,56 C55,48 66,56 78,48 C88,42 94,36 100,32 L100,100 L0,100 Z" fill="rgba(255,255,255,0.18)" />
         <path d="M0,80 C14,70 26,74 40,68 C54,62 66,67 80,60 C90,56 95,52 100,48 L100,100 L0,100 Z" fill="rgba(255,255,255,0.12)" />
         <path d="M6,20 C22,18 30,28 44,24 C57,20 68,12 84,14" stroke="rgba(255,255,255,0.22)" strokeWidth="1.4" fill="none" />
@@ -95,15 +97,15 @@ export function ContentCover({ theme, title, badge, className, videoSrc }: Conte
         </span>
       ) : null}
 
-      <div className="absolute inset-0 flex items-center justify-center">
+      {!useImage ? <div className="absolute inset-0 flex items-center justify-center">
         <span className="text-[60px] opacity-70" aria-hidden="true">
           {cfg.icon}
         </span>
-      </div>
+      </div> : null}
 
-      <div className="absolute bottom-2 right-2 z-10 rounded-md bg-black/20 px-2 py-0.5 text-xs text-white">
+      {!useImage ? <div className="absolute bottom-2 right-2 z-10 rounded-md bg-black/20 px-2 py-0.5 text-xs text-white">
         {cfg.label}
-      </div>
+      </div> : null}
 
       {title ? <span className="sr-only">{title}</span> : null}
     </div>

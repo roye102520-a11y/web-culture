@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 import { BottomNav } from "@/components/home/BottomNav";
 import { CategoryBrowseSection } from "@/components/home/CategoryBrowseSection";
 import { CulturalPulseFeed } from "@/components/home/CulturalPulseFeed";
@@ -14,7 +16,7 @@ import { TodayCultureCard } from "@/components/home/TodayCultureCard";
 const quickNavItems = [
   { id: "quick", label: "快速浏览", targetId: "section-quick" },
   { id: "latest", label: "最新上线", targetId: "section-latest" },
-  { id: "hot", label: "历史热听", targetId: "section-hot" },
+  { id: "hot", label: "热门阅读", targetId: "section-hot" },
   { id: "category", label: "分类浏览", targetId: "section-category" },
   { id: "columns", label: "三大专栏", targetId: "section-columns" },
   { id: "classics", label: "名著聚合", targetId: "section-classics" },
@@ -40,8 +42,13 @@ export default function HomePage() {
           </div>
 
           <section id="section-hot" className="scroll-mt-24 space-y-3 rounded-2xl bg-white p-5 shadow-sm ring-1 ring-[#f0ece9]">
-            <h2 className="text-lg font-semibold">历史热听</h2>
-            <p className="text-sm text-[#57534E]">安史之乱专题、北宋士人精神、红楼建筑审美三大热听主题。</p>
+            <h2 className="text-lg font-semibold">热门阅读</h2>
+            <p className="text-sm text-[#57534E]">从安史之乱、城市气质到天津港口文化，进入有证据边界、也有人间现场的历史叙事。</p>
+            <div className="flex flex-wrap gap-4 text-sm">
+              <Link href="/content/28" className="text-[#991B1B] hover:text-[#7F1D1D]">安史之乱完整脉络 →</Link>
+              <Link href="/content/38" className="text-[#991B1B] hover:text-[#7F1D1D]">城市气质与地方志 →</Link>
+              <Link href="/content/39" className="text-[#991B1B] hover:text-[#7F1D1D]">天津港口文化 →</Link>
+            </div>
           </section>
 
           <div id="section-category" className="scroll-mt-24">
@@ -61,11 +68,13 @@ export default function HomePage() {
           <section id="section-exam" className="scroll-mt-24 space-y-3 rounded-2xl bg-white p-5 shadow-sm ring-1 ring-[#f0ece9]">
             <h2 className="text-lg font-semibold">考试专区</h2>
             <p className="text-sm text-[#57534E]">高频考点分层练习，支持错因复盘与同类题拓展。</p>
+            <Link href="/exam" className="inline-block text-sm text-[#991B1B] hover:text-[#7F1D1D]">进入题库 →</Link>
           </section>
 
           <section id="section-ai-explain" className="scroll-mt-24 space-y-3 rounded-2xl bg-white p-5 shadow-sm ring-1 ring-[#f0ece9]">
             <h2 className="text-lg font-semibold">AI历史讲解</h2>
             <p className="text-sm text-[#57534E]">以“错因-推理-背景-延展”四段方式拆解历史问题。</p>
+            <Link href="/look/explain" className="inline-block text-sm text-[#991B1B] hover:text-[#7F1D1D]">开始讲解 →</Link>
           </section>
 
           <div id="section-deepseek" className="scroll-mt-24">

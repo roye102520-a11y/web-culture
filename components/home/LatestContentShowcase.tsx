@@ -24,7 +24,7 @@ export function LatestContentShowcase() {
         <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
           {latestContentFromCsv.map((item) => (
             <article key={item.id} className="rounded-2xl bg-white p-3 shadow-sm ring-1 ring-[#f0ece9]">
-              <ContentCover theme={item.theme} title={item.title} badge={item.type} className="aspect-video" />
+              <ContentCover theme={item.theme} title={item.title} badge={item.type} className="aspect-video" imageSrc={item.image} />
               <div className="space-y-2 px-1 pb-1 pt-3">
                 <h3 className="text-base font-semibold leading-6 text-[#1C1917] [display:-webkit-box] [-webkit-box-orient:vertical] [-webkit-line-clamp:2] overflow-hidden">
                   {item.title}
@@ -34,7 +34,7 @@ export function LatestContentShowcase() {
                 </p>
                 <div className="flex items-center justify-between text-xs text-[#78716C]">
                   <span>{item.publishedAt} 上线</span>
-                  <span>播放量 {fmtCount(item.playCount)}</span>
+                  <span>阅读量 {fmtCount(item.playCount)}</span>
                 </div>
                 <Link href={item.url} className="inline-block text-sm text-[#991B1B] hover:text-[#7F1D1D]">
                   查看详情 →
@@ -45,7 +45,7 @@ export function LatestContentShowcase() {
         </div>
 
         <aside className="h-fit rounded-2xl bg-white p-4 shadow-sm ring-1 ring-[#f0ece9]">
-          <h3 className="text-base font-semibold text-[#1C1917]">历史热听榜</h3>
+          <h3 className="text-base font-semibold text-[#1C1917]">热门阅读榜</h3>
           <div className="mt-3 space-y-2">
             {hotTop5.map((item, index) => (
               <Link

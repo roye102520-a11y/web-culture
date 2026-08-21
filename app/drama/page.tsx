@@ -1,12 +1,15 @@
-export default function Page() {
+import { ContentCollectionPage } from "@/components/content/ContentCollectionPage";
+import { allContentRecords } from "@/data/content-adapters";
+
+const items = allContentRecords.filter((item) => item.category === "剧说古今");
+
+export default function DramaPage() {
   return (
-    <div className="min-h-screen bg-[#F5F5F4]">
-      <main className="mx-auto flex min-h-screen w-full max-w-4xl items-center justify-center px-6 py-16">
-        <div className="w-full rounded-2xl bg-white/85 p-8 text-center shadow-sm">
-          <h1 className="text-2xl font-semibold text-[#1C1917]">剧说古今（专栏占位页）</h1>
-          <p className="mt-3 text-sm text-[#57534E]">模块入口已打通，后续可继续填充业务内容。</p>
-        </div>
-      </main>
-    </div>
+    <ContentCollectionPage
+      eyebrow="HISTORY THROUGH SCREEN"
+      title="影视里的中国历史"
+      description="从熟悉的剧情进入真实历史：我们会说明哪些制度和生活细节有历史依据，哪些人物与冲突为了叙事被压缩、重组或强化。"
+      items={items}
+    />
   );
 }

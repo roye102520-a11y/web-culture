@@ -26,6 +26,7 @@ export function TodayCultureCard() {
           title={featuredArticle.title}
           badge="影视对读"
           className="min-h-56 rounded-none md:min-h-80"
+          imageSrc="/images/covers/tang-anshi-war.png"
         />
 
         <div className="flex flex-col justify-center p-5 md:p-8">

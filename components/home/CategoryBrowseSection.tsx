@@ -29,7 +29,7 @@ const items: CategoryItem[] = categoryContentFromCsv.map((item) => ({
   summary: item.desc,
   dynasty: item.dynasty,
   contentType: item.contentType,
-  coverImage: "",
+  coverImage: item.image,
   likes: item.likes,
   favorites: item.collects,
   url: item.url,
@@ -94,7 +94,7 @@ export function CategoryBrowseSection({ title = "分类浏览" }: CategoryBrowse
         {filtered.map((item) => (
           <article key={item.id} className="rounded-2xl bg-white p-3 shadow-sm ring-1 ring-[#f0ece9]">
             <div className="relative overflow-hidden rounded-xl">
-              <ContentCover theme={item.theme} title={item.title} badge={item.contentType} className="aspect-video" />
+              <ContentCover theme={item.theme} title={item.title} badge={item.contentType} className="aspect-video" imageSrc={item.coverImage} />
             </div>
 
             <div className="space-y-2 px-1 pb-1 pt-3">

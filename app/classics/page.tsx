@@ -13,6 +13,12 @@ type FeedType = "视频" | "播客" | "长文";
 const books: ClassicBook[] = ["红楼梦", "三国演义", "水浒传", "西游记"];
 
 const typeStyle: Record<FeedType, string> = { 视频: "bg-red-50 text-red-700", 播客: "bg-amber-50 text-amber-700", 长文: "bg-stone-100 text-stone-700" };
+const bookCoverImages: Record<ClassicBook, string> = {
+  红楼梦: "/images/covers/imperial-court-military.png",
+  三国演义: "/images/covers/tang-anshi-war.png",
+  水浒传: "/images/covers/yuan-military-routes.png",
+  西游记: "/images/covers/ming-14-wang-yangming.png",
+};
 
 export default function ClassicsPage() {
   const router = useRouter();
@@ -65,7 +71,13 @@ export default function ClassicsPage() {
 
           <article className="grid gap-4 rounded-2xl bg-[#faf7f5] p-4 ring-1 ring-[#efeae7] md:grid-cols-[220px_1fr]">
             <div className="relative overflow-hidden rounded-xl">
-              <ContentCover theme={bookData.theme} title={activeBook} badge="名著" className="aspect-[3/4]" />
+              <ContentCover
+                theme={bookData.theme}
+                title={activeBook}
+                badge="名著"
+                className="aspect-[3/4]"
+                imageSrc={bookCoverImages[activeBook]}
+              />
             </div>
             <div className="space-y-2">
               <h1 className="text-2xl font-semibold">{activeBook}</h1>

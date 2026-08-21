@@ -7,7 +7,7 @@
     "category": "红楼梦",
     "tags": "人物",
     "difficulty": "中",
-    "image": "",
+    "image": "/images/covers/imperial-court-military.png",
     "source": "文史整理"
   },
   {
@@ -18,7 +18,7 @@
     "category": "红楼梦",
     "tags": "人物",
     "difficulty": "中",
-    "image": "",
+    "image": "/images/covers/imperial-court-military.png",
     "source": "文史整理"
   },
   {
@@ -29,7 +29,7 @@
     "category": "红楼梦",
     "tags": "情节",
     "difficulty": "难",
-    "image": "",
+    "image": "/images/covers/local-governance-economy.png",
     "source": "文史整理"
   },
   {
@@ -40,7 +40,7 @@
     "category": "红楼梦",
     "tags": "家族",
     "difficulty": "中",
-    "image": "",
+    "image": "/images/covers/local-governance-economy.png",
     "source": "文史整理"
   },
   {
@@ -51,7 +51,7 @@
     "category": "红楼梦",
     "tags": "人物",
     "difficulty": "中",
-    "image": "",
+    "image": "/images/covers/imperial-court-military.png",
     "source": "文史整理"
   },
   {
@@ -62,7 +62,7 @@
     "category": "三国演义",
     "tags": "战役",
     "difficulty": "中",
-    "image": "",
+    "image": "/images/covers/tang-anshi-war.png",
     "source": "文史整理"
   },
   {
@@ -73,7 +73,7 @@
     "category": "三国演义",
     "tags": "谋略",
     "difficulty": "难",
-    "image": "",
+    "image": "/images/covers/ming-08-cabinet.png",
     "source": "文史整理"
   },
   {
@@ -84,7 +84,7 @@
     "category": "三国演义",
     "tags": "人物",
     "difficulty": "中",
-    "image": "",
+    "image": "/images/covers/imperial-court-military.png",
     "source": "文史整理"
   },
   {
@@ -95,7 +95,7 @@
     "category": "三国演义",
     "tags": "人物",
     "difficulty": "中",
-    "image": "",
+    "image": "/images/covers/local-governance-economy.png",
     "source": "文史整理"
   },
   {
@@ -106,7 +106,7 @@
     "category": "水浒传",
     "tags": "故事",
     "difficulty": "中",
-    "image": "",
+    "image": "/images/covers/yuan-military-routes.png",
     "source": "文史整理"
   },
   {
@@ -117,7 +117,7 @@
     "category": "水浒传",
     "tags": "人物",
     "difficulty": "难",
-    "image": "",
+    "image": "/images/covers/local-governance-economy.png",
     "source": "文史整理"
   },
   {
@@ -128,7 +128,7 @@
     "category": "西游记",
     "tags": "文化",
     "difficulty": "中",
-    "image": "",
+    "image": "/images/covers/yuan-military-routes.png",
     "source": "文史整理"
   },
   {
@@ -139,7 +139,7 @@
     "category": "西游记",
     "tags": "人物",
     "difficulty": "中",
-    "image": "",
+    "image": "/images/covers/tang-anshi-war.png",
     "source": "文史整理"
   },
   {
@@ -150,7 +150,7 @@
     "category": "剧说古今",
     "tags": "甄嬛传",
     "difficulty": "中",
-    "image": "",
+    "image": "/images/covers/imperial-court-military.png",
     "source": "影视文史"
   },
   {
@@ -161,7 +161,7 @@
     "category": "剧说古今",
     "tags": "琅琊榜",
     "difficulty": "中",
-    "image": "",
+    "image": "/images/covers/yuan-military-routes.png",
     "source": "影视文史"
   },
   {
@@ -172,7 +172,7 @@
     "category": "剧说古今",
     "tags": "大明王朝",
     "difficulty": "难",
-    "image": "",
+    "image": "/images/covers/ming-11-zhangjuzheng-tax.png",
     "source": "影视文史"
   },
   {
@@ -183,7 +183,7 @@
     "category": "剧说古今",
     "tags": "延禧攻略",
     "difficulty": "易",
-    "image": "",
+    "image": "/images/covers/imperial-court-military.png",
     "source": "影视文史"
   },
   {
@@ -194,7 +194,7 @@
     "category": "剧说古今",
     "tags": "长安十二时辰",
     "difficulty": "中",
-    "image": "",
+    "image": "/images/covers/tang-anshi-war.png",
     "source": "影视文史"
   },
   {
@@ -205,7 +205,7 @@
     "category": "八卦来了",
     "tags": "名人轶事",
     "difficulty": "易",
-    "image": "",
+    "image": "/images/covers/ming-14-wang-yangming.png",
     "source": "文史冷知识"
   },
   {
@@ -216,7 +216,7 @@
     "category": "八卦来了",
     "tags": "名人轶事",
     "difficulty": "易",
-    "image": "",
+    "image": "/images/covers/local-governance-economy.png",
     "source": "文史冷知识"
   },
   {
@@ -227,7 +227,7 @@
     "category": "八卦来了",
     "tags": "生活冷知识",
     "difficulty": "中",
-    "image": "",
+    "image": "/images/covers/local-governance-economy.png",
     "source": "文史冷知识"
   },
   {
@@ -238,7 +238,7 @@
     "category": "八卦来了",
     "tags": "历史谜团",
     "difficulty": "中",
-    "image": "",
+    "image": "/images/covers/imperial-court-military.png",
     "source": "文史冷知识"
   },
   {
@@ -249,7 +249,7 @@
     "category": "八卦来了",
     "tags": "生活冷知识",
     "difficulty": "易",
-    "image": "",
+    "image": "/images/covers/local-governance-economy.png",
     "source": "文史冷知识"
   },
   {
@@ -260,7 +260,7 @@
     "category": "典籍探疑",
     "tags": "历史评价",
     "difficulty": "难",
-    "image": "",
+    "image": "/images/covers/ming-02-centralized-power.png",
     "source": "典籍解读"
   },
   {
@@ -271,7 +271,7 @@
     "category": "典籍探疑",
     "tags": "历史谜团",
     "difficulty": "中",
-    "image": "",
+    "image": "/images/covers/tang-anshi-war.png",
     "source": "典籍解读"
   },
   {
@@ -282,7 +282,7 @@
     "category": "典籍探疑",
     "tags": "人物评价",
     "difficulty": "难",
-    "image": "",
+    "image": "/images/covers/imperial-court-military.png",
     "source": "典籍解读"
   },
   {
@@ -293,7 +293,7 @@
     "category": "典籍探疑",
     "tags": "历史事件",
     "difficulty": "中",
-    "image": "",
+    "image": "/images/covers/ming-05-jingnan-yongle.png",
     "source": "典籍解读"
   },
   {
@@ -304,7 +304,7 @@
     "category": "首页内容",
     "tags": "唐朝",
     "difficulty": "中",
-    "image": "",
+    "image": "/images/covers/tang-anshi-war.png",
     "source": "历史纪录片"
   },
   {
@@ -315,7 +315,7 @@
     "category": "首页内容",
     "tags": "史记",
     "difficulty": "中",
-    "image": "",
+    "image": "/images/covers/local-governance-economy.png",
     "source": "历史播客"
   },
   {
@@ -326,7 +326,7 @@
     "category": "首页内容",
     "tags": "宋朝",
     "difficulty": "难",
-    "image": "",
+    "image": "/images/covers/local-governance-economy.png",
     "source": "深度长文"
   },
   {
@@ -337,7 +337,7 @@
     "category": "首页内容",
     "tags": "明朝",
     "difficulty": "中",
-    "image": "",
+    "image": "/images/covers/ming-09-jinyiwei.png",
     "source": "深度长文"
   },
   {
@@ -348,7 +348,7 @@
     "category": "首页内容",
     "tags": "清朝",
     "difficulty": "难",
-    "image": "",
+    "image": "/images/covers/ming-12-sea-ban-wokou.png",
     "source": "深度长文"
   },
   {
@@ -359,7 +359,7 @@
     "category": "分类浏览",
     "tags": "唐朝",
     "difficulty": "中",
-    "image": "",
+    "image": "/images/covers/imperial-court-military.png",
     "source": "正史梳理"
   },
   {
@@ -370,7 +370,7 @@
     "category": "分类浏览",
     "tags": "宋朝-成语",
     "difficulty": "易",
-    "image": "",
+    "image": "/images/covers/ming-14-wang-yangming.png",
     "source": "成语溯源"
   },
   {
@@ -381,7 +381,7 @@
     "category": "分类浏览",
     "tags": "明朝-官制",
     "difficulty": "中",
-    "image": "",
+    "image": "/images/covers/ming-09-jinyiwei.png",
     "source": "制度研究"
   },
   {
@@ -392,7 +392,7 @@
     "category": "分类浏览",
     "tags": "清朝-制度",
     "difficulty": "中",
-    "image": "",
+    "image": "/images/covers/yuan-military-routes.png",
     "source": "正史梳理"
   },
   {
@@ -403,7 +403,7 @@
     "category": "分类浏览",
     "tags": "元朝-政治",
     "difficulty": "中",
-    "image": "",
+    "image": "/images/covers/yuan-military-routes.png",
     "source": "制度研究"
   },
   {
@@ -414,7 +414,7 @@
     "category": "首页内容",
     "tags": "地方志-城市史-播客",
     "difficulty": "中",
-    "image": "",
+    "image": "/images/covers/local-governance-economy.png",
     "source": "文史播客"
   },
   {
@@ -425,7 +425,7 @@
     "category": "首页内容",
     "tags": "天津-港埠文化-播客",
     "difficulty": "中",
-    "image": "",
+    "image": "/images/covers/ming-06-zhenghe-voyages.png",
     "source": "文史播客"
   },
   {
@@ -436,7 +436,7 @@
     "category": "典籍探疑",
     "tags": "竹书纪年-史记-商代系谱",
     "difficulty": "难",
-    "image": "",
+    "image": "/images/covers/local-governance-economy.png",
     "source": "典籍精读"
   },
   {
@@ -447,7 +447,7 @@
     "category": "典籍探疑",
     "tags": "里耶秦简-迁陵县-秦代治理",
     "difficulty": "难",
-    "image": "",
+    "image": "/images/covers/ming-03-registers-maps.png",
     "source": "典籍精读"
   },
   {
@@ -458,7 +458,7 @@
     "category": "典籍探疑",
     "tags": "诗经-语料系年-训诂",
     "difficulty": "难",
-    "image": "",
+    "image": "/images/covers/ming-14-wang-yangming.png",
     "source": "典籍精读"
   },
   {
@@ -469,7 +469,7 @@
     "category": "典籍探疑",
     "tags": "四书集注-阳明后学-朱子学",
     "difficulty": "难",
-    "image": "",
+    "image": "/images/covers/ming-14-wang-yangming.png",
     "source": "典籍精读"
   },
   {
@@ -480,7 +480,7 @@
     "category": "典籍探疑",
     "tags": "资治通鉴-通鉴纪事本末-史学叙事",
     "difficulty": "中",
-    "image": "",
+    "image": "/images/covers/local-governance-economy.png",
     "source": "典籍精读"
   },
   {
@@ -491,7 +491,7 @@
     "category": "典籍探疑",
     "tags": "汉书艺文志-目录学-知识分类",
     "difficulty": "中",
-    "image": "",
+    "image": "/images/covers/local-governance-economy.png",
     "source": "典籍精读"
   }
 ]
