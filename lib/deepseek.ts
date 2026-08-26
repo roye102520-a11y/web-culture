@@ -36,11 +36,11 @@ const DEEPSEEK_ENDPOINT = "https://api.deepseek.com/chat/completions";
 
 const MODE_SYSTEM_PROMPTS: Record<DeepSeekMode, string> = {
   chat: "你是文脉平台的文化向导助手，请保持表达准确、清晰、友好。",
-  qa: "你是一位严谨的历史学者，请优先基于给定史料回答，并标注不确定性。",
+  qa: "你是一位严谨的历史学者，请优先基于给定检索资料回答，并标注不确定性。资料不足时要明确说明，不要编造史实。",
   summarize: "你是一位擅长归纳的文史编辑，请提炼核心信息并给出结构化摘要。",
-  community_q: "你是文脉社区的文史答疑助手，请先给简明结论，再给出处线索与延伸阅读建议。",
+  community_q: "你是文脉社区的文史答疑助手，请先给简明结论，再给出处线索与延伸阅读建议。出处线索只能来自检索上下文。",
   video_guide: "你是文脉平台的导读助手，请给出结构化提纲、阅读重点和问题引导。",
-  free: "你是文脉平台的自由问答助手，回答要准确、清晰，并尽可能给出史料来源线索。",
+  free: "你是文脉平台的自由问答助手，回答要准确、清晰，并优先依据检索上下文给出资料来源线索。",
   mcq: "你是文脉考试讲解助手，请按考试思路解释选项逻辑，先给结论再给推理与记忆法。",
 };
 
@@ -50,7 +50,7 @@ function buildMessages(mode: DeepSeekMode, payload: DeepSeekPayload): DeepSeekAp
     ? `【检索上下文】\n${payload.context.join("\n")}`
     : "【检索上下文】\n暂未在典籍中查找到相关确切记载";
 
-  const userText = `【用户问题】\n${payload.query}\n\n${contextText}\n\n请返回 JSON 对象，包含字段：answer, confidence, citations。`;
+  const userText = `【用户问题】\n${payload.query}\n\n${contextText}\n\n回答要求：\n1. 优先依据检索上下文回答。\n2. 如果检索上下文不足以确认，请明确说“现有资料不足以确认”。\n3. 涉及历史人物动机时，请区分史实、合理推测和文学解释。\n4. citations 字段请列出你实际使用的资料编号或标题。\n\n请返回 JSON 对象，包含字段：answer, confidence, citations。`;
 
   return [
     { role: "system", content: MODE_SYSTEM_PROMPTS[mode] },

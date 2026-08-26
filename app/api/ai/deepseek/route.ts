@@ -3,6 +3,7 @@ import { NextResponse } from "next/server";
 import { withAIErrorHandling, AIHandlerError } from "@/lib/api-utils";
 import { callDeepSeek, type DeepSeekResponse } from "@/lib/deepseek";
 import { searchHistoryContext } from "@/lib/history-rag";
+import type { HistoryCitation } from "@/lib/history-rag-types";
 
 interface DeepSeekRouteRequest {
   query: string;
@@ -13,6 +14,7 @@ interface DeepSeekRouteResponse {
   ok: boolean;
   query: string;
   ragHits: string[];
+  citations: HistoryCitation[];
   result: DeepSeekResponse;
 }
 
@@ -28,7 +30,7 @@ export const POST = withAIErrorHandling(async (request: Request) => {
     throw new AIHandlerError("INVALID_REQUEST", "query 不能为空", 400);
   }
 
-  const { ragHits } = searchHistoryContext(query);
+  const { ragHits, citations } = await searchHistoryContext(query);
 
   const result = await callDeepSeek({
     mode,
@@ -50,6 +52,7 @@ export const POST = withAIErrorHandling(async (request: Request) => {
     ok: true,
     query,
     ragHits,
+    citations,
     result,
   } satisfies DeepSeekRouteResponse);
 });

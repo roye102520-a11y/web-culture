@@ -7,6 +7,8 @@
   },
   "scripts": {
     "dev": "next dev",
+    "rag:build": "node scripts/rag/build-vector-store.mjs",
+    "rag:preview": "node scripts/rag/preview-rag-debug.mjs",
     "build": "next build",
     "start": "next start",
     "lint": "eslint"

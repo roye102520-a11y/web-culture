@@ -6,12 +6,14 @@ export async function GET() {
   const aiKeyConfigured = Boolean(
     process.env.DEEPSEEK_API_KEY && process.env.DEEPSEEK_API_KEY !== "your_api_key_here",
   );
-  const ragLoaded = searchHistoryContext("唐代").ragHits.length > 0;
+  const ragResult = await searchHistoryContext("唐代");
+  const ragLoaded = ragResult.citations.length > 0;
 
   return NextResponse.json({
     status: "ok",
     aiKeyConfigured,
     ragLoaded,
+    ragDocs: ragResult.citations.length,
     timestamp: new Date().toISOString(),
   });
 }

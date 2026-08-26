@@ -6,11 +6,13 @@ import { useSearchParams } from "next/navigation";
 
 import { Button } from "@/components/ui/button";
 import { getAIErrorMessage } from "@/lib/client-ai";
+import type { HistoryCitation } from "@/lib/history-rag-types";
 
 interface DeepSeekResult {
   ok: boolean;
   query: string;
   ragHits: string[];
+  citations?: HistoryCitation[];
   result: {
     answer: string;
     error?: string;
@@ -43,11 +45,11 @@ const recommendQuestions: RecommendItem[] = [
 ];
 
 function parseRagHit(hit: string) {
-  const match = hit.match(/^【(.+?)】(.*)$/);
+  const match = hit.match(/^【(.+?)】([\s\S]*)$/);
   if (!match) {
     return { source: "典籍片段", snippet: hit };
   }
-  return { source: match[1], snippet: match[2] || "" };
+  return { source: match[1], snippet: match[2]?.trim() || "" };
 }
 
 export default function DeepSeekPage() {
@@ -136,9 +138,13 @@ export default function DeepSeekPage() {
                     <h2 className="text-sm font-semibold text-[#991B1B]">参考来源</h2>
                     {result.ragHits.map((hit, idx) => {
                       const parsed = parseRagHit(hit);
+                      const citation = result.citations?.[idx];
                       return (
                         <div key={`${parsed.source}-${idx}`} className="rounded-lg bg-white px-3 py-3 text-sm shadow-sm ring-1 ring-[#f0ece9]">
-                          <p className="font-medium text-[#1C1917]">{parsed.source}</p>
+                          <div className="flex flex-wrap items-center justify-between gap-2">
+                            <p className="font-medium text-[#1C1917]">{parsed.source}</p>
+                            {citation && <span className="text-xs text-[#78716C]">score {citation.score}</span>}
+                          </div>
                           <p className="mt-1 text-[#57534E]">{parsed.snippet || "暂无片段摘要"}</p>
                         </div>
                       );
