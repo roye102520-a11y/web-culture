@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button";
 import { examQuestionsFromCsv } from "@/data/content-adapters";
 import { getAIErrorMessage } from "@/lib/client-ai";
 
-type Dynasty = "全部" | "唐" | "宋" | "元" | "明" | "清";
+type Section = "全部" | "Verbal Reasoning" | "Quantitative Reasoning";
 type Difficulty = "简单" | "中等" | "困难";
 
 type AIRequestPayload = {
@@ -21,7 +21,9 @@ type AIRequestPayload = {
 
 type Question = {
   id: string;
-  dynasty: Exclude<Dynasty, "全部">;
+  section: Exclude<Section, "全部">;
+  topic: string;
+  topicOrder: number;
   difficulty: Difficulty;
   text: string;
   options: { key: "A" | "B" | "C" | "D"; text: string }[];
@@ -29,25 +31,35 @@ type Question = {
   analysis: string;
 };
 
-const dynastyOptions: Dynasty[] = ["全部", "唐", "宋", "元", "明", "清"];
+const sectionOptions: Section[] = ["全部", "Verbal Reasoning", "Quantitative Reasoning"];
 const difficultyOptions: Difficulty[] = ["简单", "中等", "困难"];
+const PAGE_SIZE = 20;
 
 const questions: Question[] = examQuestionsFromCsv;
 
 export default function ExamPage() {
-  const [dynasty, setDynasty] = useState<Dynasty>("全部");
+  const [section, setSection] = useState<Section>("全部");
+  const [topic, setTopic] = useState("全部考点");
   const [difficulty, setDifficulty] = useState<Difficulty | null>(null);
+  const [page, setPage] = useState(1);
   const [answers, setAnswers] = useState<Record<string, "A" | "B" | "C" | "D">>({});
   const [openAnalysis, setOpenAnalysis] = useState<Record<string, boolean>>({});
   const [aiLoading, setAiLoading] = useState<Record<string, boolean>>({});
   const [aiError, setAiError] = useState<Record<string, string | null>>({});
   const [aiExplain, setAiExplain] = useState<Record<string, string>>({});
 
-  const filtered = useMemo(
-    () =>
-      questions.filter((q) => (dynasty === "全部" || q.dynasty === dynasty) && (!difficulty || q.difficulty === difficulty)),
-    [dynasty, difficulty],
+  const topics = useMemo(
+    () => Array.from(new Set(questions.filter((q) => section === "全部" || q.section === section).map((q) => q.topic))),
+    [section],
   );
+
+  const filtered = useMemo(() => questions.filter((q) =>
+    (section === "全部" || q.section === section) &&
+    (topic === "全部考点" || q.topic === topic) &&
+    (!difficulty || q.difficulty === difficulty)), [section, topic, difficulty]);
+
+  const pageCount = Math.max(1, Math.ceil(filtered.length / PAGE_SIZE));
+  const pageQuestions = useMemo(() => filtered.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE), [filtered, page]);
 
   const doneCount = useMemo(
     () => filtered.filter((q) => answers[q.id] !== undefined).length,
@@ -91,21 +103,21 @@ export default function ExamPage() {
         <div className="grid gap-6 lg:grid-cols-[1fr_280px]">
           <div className="space-y-5">
             <section className="rounded-2xl bg-white p-5 shadow-sm ring-1 ring-[#efeae7]">
-              <h1 className="text-2xl font-semibold">考试专区</h1>
-              <p className="mt-1 text-sm text-[#57534E]">时间线 × 难题 × 刷题</p>
+              <h1 className="text-2xl font-semibold">GRE 原创题库</h1>
+              <p className="mt-1 text-sm text-[#57534E]">3,000 道原创专项练习 · 按 GRE 考点顺序排列 · 非 ETS 官方真题</p>
             </section>
 
             <section className="space-y-3 rounded-2xl bg-white p-4 shadow-sm ring-1 ring-[#efeae7]">
               <div className="space-y-2">
-                <p className="text-xs font-medium tracking-wide text-[#78716C]">朝代筛选</p>
+                <p className="text-xs font-medium tracking-wide text-[#78716C]">考试模块</p>
                 <div className="flex flex-wrap gap-2">
-                  {dynastyOptions.map((item) => (
+                  {sectionOptions.map((item) => (
                     <button
                       key={item}
                       type="button"
-                      onClick={() => setDynasty(item)}
+                      onClick={() => { setSection(item); setTopic("全部考点"); setPage(1); }}
                       className={`rounded-full px-3 py-1.5 text-sm ${
-                        dynasty === item ? 'bg-[#991B1B] text-white' : 'bg-white text-[#57534E] ring-1 ring-[#e7e5e4]'
+                        section === item ? 'bg-[#991B1B] text-white' : 'bg-white text-[#57534E] ring-1 ring-[#e7e5e4]'
                       }`}
                     >
                       {item}
@@ -115,11 +127,19 @@ export default function ExamPage() {
               </div>
 
               <div className="space-y-2">
+                <label htmlFor="gre-topic" className="text-xs font-medium tracking-wide text-[#78716C]">GRE 考点顺序</label>
+                <select id="gre-topic" value={topic} onChange={(event) => { setTopic(event.target.value); setPage(1); }} className="h-11 w-full rounded-xl border border-[#e7e5e4] bg-white px-3 text-sm text-[#57534E] outline-none focus:border-[#991B1B]/50">
+                  <option>全部考点</option>
+                  {topics.map((item, index) => <option key={item} value={item}>{index + 1}. {item}</option>)}
+                </select>
+              </div>
+
+              <div className="space-y-2">
                 <p className="text-xs font-medium tracking-wide text-[#78716C]">难度筛选</p>
                 <div className="flex flex-wrap gap-2">
                   <button
                     type="button"
-                    onClick={() => setDifficulty(null)}
+                    onClick={() => { setDifficulty(null); setPage(1); }}
                     className={`rounded-full px-3 py-1.5 text-sm ${
                       difficulty === null ? 'bg-[#991B1B] text-white' : 'bg-white text-[#57534E] ring-1 ring-[#e7e5e4]'
                     }`}
@@ -130,7 +150,7 @@ export default function ExamPage() {
                     <button
                       key={item}
                       type="button"
-                      onClick={() => setDifficulty(item)}
+                      onClick={() => { setDifficulty(item); setPage(1); }}
                       className={`rounded-full px-3 py-1.5 text-sm ${
                         difficulty === item ? 'bg-[#991B1B] text-white' : 'bg-white text-[#57534E] ring-1 ring-[#e7e5e4]'
                       }`}
@@ -143,14 +163,14 @@ export default function ExamPage() {
             </section>
 
             <section className="space-y-3">
-              {filtered.map((q, idx) => (
+              {pageQuestions.map((q, idx) => (
                 <article id={`exam-${q.id}`} key={q.id} className="rounded-2xl bg-white p-4 shadow-sm ring-1 ring-[#efeae7]">
                   <div className="flex items-start justify-between gap-3">
                     <p className="text-sm font-medium leading-7 text-[#1C1917]">
-                      {idx + 1}. {q.text}
+                      {(page - 1) * PAGE_SIZE + idx + 1}. {q.text}
                     </p>
                     <span className="shrink-0 rounded-full bg-[#f5f2ef] px-2 py-0.5 text-xs text-[#57534E]">
-                      {q.dynasty} · {q.difficulty}
+                      {q.section} · {q.difficulty}
                     </span>
                   </div>
 
@@ -215,6 +235,12 @@ export default function ExamPage() {
                 </article>
               ))}
             </section>
+
+            <nav className="flex items-center justify-between rounded-2xl bg-white p-4 shadow-sm ring-1 ring-[#efeae7]" aria-label="题库分页">
+              <Button variant="outline" disabled={page === 1} onClick={() => setPage((value) => Math.max(1, value - 1))}>上一页</Button>
+              <span className="text-sm text-[#57534E]">第 {page} / {pageCount} 页</span>
+              <Button variant="outline" disabled={page === pageCount} onClick={() => setPage((value) => Math.min(pageCount, value + 1))}>下一页</Button>
+            </nav>
           </div>
 
           <aside className="h-fit space-y-3 rounded-2xl bg-white p-4 shadow-sm ring-1 ring-[#efeae7] lg:sticky lg:top-6">
@@ -230,7 +256,7 @@ export default function ExamPage() {
             <div className="space-y-2">
               <p className="text-xs font-medium tracking-wide text-[#78716C]">快速跳题</p>
               <div className="flex flex-wrap gap-2">
-                {filtered.map((q, idx) => (
+                {pageQuestions.map((q, idx) => (
                   <button
                     key={q.id}
                     type="button"
@@ -241,7 +267,7 @@ export default function ExamPage() {
                       answers[q.id] ? 'bg-[#991B1B] text-white' : 'bg-[#f5f2ef] text-[#57534E]'
                     }`}
                   >
-                    {idx + 1}
+                    {(page - 1) * PAGE_SIZE + idx + 1}
                   </button>
                 ))}
               </div>

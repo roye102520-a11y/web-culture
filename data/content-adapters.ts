@@ -28,10 +28,11 @@ export type RawExam = {
   difficulty: string;
   tags: string;
   language: string;
+  section: "Verbal Reasoning" | "Quantitative Reasoning";
+  topic_order: number;
 };
 
 type ExamDifficulty = "简单" | "中等" | "困难";
-type Dynasty = "唐" | "宋" | "元" | "明" | "清";
 type ContentTypeCN = "长文" | "视频" | "播客";
 
 function isRawContentArray(value: unknown): value is RawContent[] {
@@ -75,6 +76,8 @@ function isRawExamArray(value: unknown): value is RawExam[] {
         typeof row.difficulty === "string" &&
         typeof row.tags === "string" &&
         typeof row.language === "string"
+        && (row.section === "Verbal Reasoning" || row.section === "Quantitative Reasoning")
+        && typeof row.topic_order === "number"
       );
     })
   );
@@ -175,12 +178,11 @@ export const examQuestionsFromCsv = rawExams.map((item) => {
     难: "困难",
     Hard: "困难",
   };
-  const text = `${item.title}`;
-  const dynasty =
-    /唐/.test(text) ? "唐" : /宋/.test(text) ? "宋" : /元/.test(text) ? "元" : /明/.test(text) ? "明" : /清/.test(text) ? "清" : "唐";
   return {
     id: `csv-q-${item.id}`,
-    dynasty: dynasty as Dynasty,
+    section: item.section,
+    topic: item.knowledge_point,
+    topicOrder: item.topic_order,
     difficulty: difficultyMap[item.difficulty] ?? "中等",
     text: item.title,
     options: [
@@ -192,7 +194,7 @@ export const examQuestionsFromCsv = rawExams.map((item) => {
     correct: item.answer,
     analysis: item.analysis,
   };
-});
+}).sort((a, b) => a.topicOrder - b.topicOrder || Number(a.id.replace("csv-q-", "")) - Number(b.id.replace("csv-q-", "")));
 
 export function getContentById(id: string) {
   const numericId = Number(id);
